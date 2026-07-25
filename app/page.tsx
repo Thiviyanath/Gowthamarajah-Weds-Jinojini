@@ -55,7 +55,7 @@ export default function WeddingExperience() {
           >
             <div className="absolute inset-0 opacity-30">
               <Image 
-                src="/images/card.jpg" 
+                src="/images/card.png" 
                 alt="Background Monogram" 
                 fill 
                 className="object-cover blur-sm" 
@@ -107,7 +107,7 @@ export default function WeddingExperience() {
           <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
               <Image 
-                src="/images/hero.jpg" 
+                src="/images/hero.png" 
                 alt="Gowthamarajah and Jinojini" 
                 fill 
                 className="object-cover object-top opacity-70 scale-105 animate-pulse" 
@@ -154,14 +154,14 @@ export default function WeddingExperience() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="relative h-[480px] rounded-2xl overflow-hidden gold-border group shadow-2xl">
                 <Image 
-                  src="/images/story.jpg" 
+                  src="/images/story.png" 
                   alt="Cinematic Portrait" 
                   fill 
                   className="object-cover transition-transform duration-700 group-hover:scale-105" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-amber-100/90 text-sm italic font-serif">
-                  "Two souls with but a single thought, two hearts that beat as one."
+                  &quot;Two souls with but a single thought, two hearts that beat as one.&quot;
                 </div>
               </div>
 
@@ -196,7 +196,7 @@ export default function WeddingExperience() {
               </div>
               <div className="relative w-full aspect-[1/1.4] rounded-lg overflow-hidden">
                 <Image 
-                  src="/images/invitation.jpg" 
+                  src="/images/invitation.png" 
                   alt="Official Wedding Invitation Card" 
                   fill 
                   className="object-contain" 
