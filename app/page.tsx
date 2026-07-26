@@ -63,11 +63,22 @@ export default function WeddingExperience() {
             transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#070504] p-4 text-center overflow-hidden"
           >
-            {/* Animated Ambient Background Glow */}
+            {/* Background Picture (Sharp & Visible on Mobile & Desktop) */}
+            <div className="absolute inset-0 z-0">
+              <img 
+                src="/images/overlay-bg.png" 
+                alt="Opening Background" 
+                className="w-full h-full object-cover object-center opacity-55 scale-105"
+              />
+              {/* Dark Vignette Gradient for Perfect Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070504] via-[#070504]/40 to-[#070504]/70" />
+            </div>
+
+            {/* Ambient Gold Glow Effect */}
             <motion.div 
-              animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.3, 0.15] }}
+              animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.35, 0.2] }}
               transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute w-[500px] h-[500px] rounded-full bg-amber-600/20 blur-[120px] pointer-events-none"
+              className="absolute w-[500px] h-[500px] rounded-full bg-amber-600/20 blur-[100px] pointer-events-none z-0"
             />
 
             <motion.div 
