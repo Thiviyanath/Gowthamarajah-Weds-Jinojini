@@ -195,27 +195,22 @@ export default function WeddingExperience() {
           </section>
 
           {/* DIGITAL INVITATION CARD SECTION */}
-            <section className="py-12 md:py-20 px-4 w-full">
-              <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
-                <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
-                  DIGITAL INVITATION CARD
-                </p>
-                
-                <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40">
-                  <img 
-                    src="/images/invitation.jpg" 
-                    alt="Official Wedding Invitation Card" 
-                    className="w-full h-auto max-w-full block object-contain"
-                    onError={(e) => {
-                      // Prevent infinite loop if file path is missing
-                      e.currentTarget.onerror = null;
-                      // Fallback check for png extension
-                      e.currentTarget.src = "/images/invitation.png";
-                    }}
-                  />
-                </div>
+          <section className="py-12 md:py-20 px-4 w-full">
+            <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
+              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
+                DIGITAL INVITATION CARD
+              </p>
+              
+              <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40 min-h-[300px]">
+                <img 
+                  src="/images/invitation.jpg" 
+                  alt="Official Wedding Invitation Card" 
+                  className="w-full h-auto max-w-full block object-contain"
+                  loading="eager"
+                />
               </div>
-            </section>
+            </div>
+          </section>
 
           {/* RSVP Section */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
