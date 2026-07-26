@@ -145,35 +145,44 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-         {/* SACRED TAMIL INVITATION CARD */}
-      <section className="py-12 md:py-20 px-4 w-full relative">
-        <div className="max-w-4xl mx-auto">
-          
-          <div className="text-center mb-8 md:mb-10">
-            <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
-              <Scroll className="w-4 h-4 text-amber-400" />
-              SACRED INVITATION
-            </div>
-            <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
-              திருமண அழைப்பிதழ்
-            </h2>
-          </div>
+     {/* SACRED TAMIL INVITATION CARD (MOBILE-OPTIMIZED) */}
+<section className="py-12 md:py-20 px-4 w-full relative">
+  <div className="max-w-4xl mx-auto">
+    
+    <div className="text-center mb-8 md:mb-10">
+      <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+        <Scroll className="w-4 h-4 text-amber-400" />
+        SACRED INVITATION
+      </div>
+      <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
+        திருமண அழைப்பிதழ்
+      </h2>
+    </div>
 
-          {/* Featured Image Box */}
-          <div className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-[#0a0806]">
-            <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-[#0a0806] flex items-center justify-center min-h-[350px]">
-              <img 
-                src="/images/invitation.png" 
-                alt="Official Tamil Wedding Invitation Card" 
-                className="w-full h-auto max-w-full block object-contain rounded-xl"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-          </div>
+    {/* Mobile-Safe Container with Native Hardware Acceleration */}
+    <div className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-[#0a0806]">
+      <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-[#0a0806] flex items-center justify-center min-h-[300px]">
+        <picture className="w-full h-auto block">
+          <source srcSet="/images/invitation.png" type="image/png" />
+          <img 
+            src="/images/invitation.png" 
+            alt="Official Tamil Wedding Invitation Card" 
+            className="w-full h-auto max-w-full block object-contain rounded-xl"
+            loading="eager"
+            decoding="sync"
+            style={{
+              maxHeight: '80vh',
+              width: '100%',
+              height: 'auto',
+              WebkitTransform: 'translateZ(0)', // Force mobile GPU layer allocation
+            }}
+          />
+        </picture>
+      </div>
+    </div>
 
-        </div>
-      </section>
+  </div>
+</section>
 
           {/* Our Story Section */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
