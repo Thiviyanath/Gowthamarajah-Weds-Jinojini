@@ -238,77 +238,96 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* OUR STORY / DETAILS SECTION */}
+         {/* VENUE & LOCATION SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="font-cinzel text-2xl md:text-4xl gold-gradient-text mb-3">Our Wedding Story</h2>
+              <h2 className="font-cinzel text-2xl md:text-4xl gold-gradient-text mb-3">Venue &amp; Location</h2>
               <div className="w-16 h-0.5 bg-amber-500/40 mx-auto" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
               
+              {/* Event Details Card */}
               <motion.div 
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: -40 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="rounded-3xl overflow-hidden gold-border shadow-2xl bg-black/40 p-3"
+                className="space-y-6 glass-card p-8 md:p-10 rounded-3xl gold-border flex flex-col justify-between"
               >
-                <img 
-                  src="/images/story.png" 
-                  alt="Story Portrait" 
-                  className="w-full h-auto max-h-[600px] object-cover rounded-2xl"
-                />
+                <div>
+                  <h3 className="font-serif-custom text-3xl text-amber-200 mb-2">Hindu Cultural Hall</h3>
+                  <p className="text-amber-100/70 text-sm leading-relaxed mb-6">
+                    Join us as we take our auspicious steps together in Trincomalee.
+                  </p>
+
+                  <div className="border-t border-amber-500/20 pt-6 space-y-4">
+                    <div className="flex items-center gap-4 text-amber-200/90 text-sm">
+                      <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                        <Calendar className="w-5 h-5 text-amber-400" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Date</p>
+                        <p className="font-semibold">Thursday, 27th August 2026</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-amber-200/90 text-sm">
+                      <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                        <Clock className="w-5 h-5 text-amber-400" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Time</p>
+                        <p className="font-semibold">10:40 AM - 11:55 AM (Subha Muhurtham)</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-amber-200/90 text-sm">
+                      <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                        <MapPin className="w-5 h-5 text-amber-400" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Address</p>
+                        <p className="font-semibold">294 Inner Harbour Rd, Trincomalee</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Google Maps Directions Button */}
+                <a
+                  href="https://maps.google.com/?q=294+Inner+Harbour+Rd,+Trincomalee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 mt-6 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-black font-bold text-xs tracking-widest hover:scale-[1.02] transition-all shadow-lg cursor-pointer"
+                >
+                  <MapPin className="w-4 h-4 text-black" />
+                  OPEN IN GOOGLE MAPS
+                </a>
               </motion.div>
 
+              {/* Embedded Interactive Map Container */}
               <motion.div 
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 40 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="space-y-6 glass-card p-8 md:p-10 rounded-3xl gold-border"
+                className="rounded-3xl overflow-hidden gold-border shadow-2xl bg-black/40 p-2 min-h-[350px] flex items-center justify-center"
               >
-                <h3 className="font-serif-custom text-3xl text-amber-200">The Sacred Muhurtham</h3>
-                <p className="text-amber-100/70 text-sm leading-relaxed">
-                  Join us as we take our auspicious steps together under the divine grace of Sri Koneswaram Temple.
-                </p>
-
-                <div className="border-t border-amber-500/20 pt-6 space-y-4">
-                  <div className="flex items-center gap-4 text-amber-200/90 text-sm">
-                    <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                      <Calendar className="w-5 h-5 text-amber-400" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Date</p>
-                      <p className="font-semibold">Thursday, 27th August 2026</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 text-amber-200/90 text-sm">
-                    <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                      <Clock className="w-5 h-5 text-amber-400" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Time</p>
-                      <p className="font-semibold">10:40 AM - 11:55 AM (Subha Muhurtham)</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 text-amber-200/90 text-sm">
-                    <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                      <MapPin className="w-5 h-5 text-amber-400" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-amber-400/70 uppercase tracking-widest">Venue</p>
-                      <p className="font-semibold">Hindu Cultural Hall, Trincomalee</p>
-                    </div>
-                  </div>
-                </div>
+                <iframe
+                  title="Hindu Cultural Hall Trincomalee Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.348625902092!2d81.2312!3d8.5721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afbb959247ad895%3A0x6b1ec27b132f831!2sHindu%20Cultural%20Hall%20-%20Trincomalee!5e0!3m2!1sen!2slk!4v1700000000000!5m2!1sen!2slk"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '380px', borderRadius: '1rem', filter: 'grayscale(0.2) contrast(1.1)' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </motion.div>
 
             </div>
           </section>
-
           {/* RSVP FORM SECTION */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
             <motion.div 
