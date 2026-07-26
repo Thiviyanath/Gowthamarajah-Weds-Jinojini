@@ -145,38 +145,35 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* SACRED TAMIL INVITATION CARD (MOBILE FLICKER-FREE CSS RENDERING) */}
-          <section className="py-16 md:py-24 px-4 w-full relative">
-            <div className="max-w-4xl mx-auto">
-              
-              <div className="text-center mb-10">
-                <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
-                  <Scroll className="w-4 h-4 text-amber-400" />
-                  SACRED INVITATION
-                </div>
-                <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
-                  திருமண அழைப்பிதழ்
-                </h2>
-              </div>
-
-              {/* Hardware-Accelerated Container */}
-              <div className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
-                
-                {/* CSS Native Background Image Box */}
-                <div 
-                  className="w-full rounded-2xl border border-amber-500/30 bg-center bg-contain bg-no-repeat shadow-2xl transition-all"
-                  style={{ 
-                    backgroundImage: `url('/images/invitation.png')`,
-                    aspectRatio: '1 / 1.41', // Standard A4 portrait aspect ratio for invitation cards
-                    width: '100%',
-                    backgroundColor: '#ffffff'
-                  }}
-                />
-
-              </div>
-
+         {/* SACRED TAMIL INVITATION CARD */}
+      <section className="py-12 md:py-20 px-4 w-full relative">
+        <div className="max-w-4xl mx-auto">
+          
+          <div className="text-center mb-8 md:mb-10">
+            <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+              <Scroll className="w-4 h-4 text-amber-400" />
+              SACRED INVITATION
             </div>
-          </section>
+            <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
+              திருமண அழைப்பிதழ்
+            </h2>
+          </div>
+
+          {/* Featured Image Box */}
+          <div className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-[#0a0806]">
+            <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-[#0a0806] flex items-center justify-center min-h-[350px]">
+              <img 
+                src="/images/invitation.png" 
+                alt="Official Tamil Wedding Invitation Card" 
+                className="w-full h-auto max-w-full block object-contain rounded-xl"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
 
           {/* Our Story Section */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
