@@ -238,6 +238,60 @@ export default function WeddingExperience() {
             </div>
           </section>
 
+                {/* OUR JOURNEY / COUPLE PORTRAIT SECTION */}
+          <section className="py-20 px-4 max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+                <Heart className="w-4 h-4 text-amber-400" />
+                OUR SACRED JOURNEY
+              </div>
+              <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">Gowthamarajah &amp; Jinojini</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+              {/* story.png Portrait Showcase */}
+              <motion.div 
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -40 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="rounded-3xl overflow-hidden gold-border shadow-2xl bg-black/40 p-3"
+              >
+                <img 
+                  src="/images/story.png" 
+                  alt="Gowthamarajah and Jinojini Portrait" 
+                  className="w-full h-auto max-h-[600px] object-cover rounded-2xl mx-auto"
+                  loading="lazy"
+                />
+              </motion.div>
+
+              {/* Story Description Box */}
+              <motion.div 
+                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 40 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6 glass-card p-8 md:p-10 rounded-3xl gold-border"
+              >
+                <h3 className="font-serif-custom text-3xl text-amber-200">Two Souls, One Destiny</h3>
+                <p className="text-amber-100/80 text-sm leading-relaxed font-light">
+                  Under the divine grace of Pathirakali Amman and Sri Koneswaram Temple, we begin our eternal journey together. We warmly invite you to share in our joy, laughter, and lifelong memories on our auspicious Muhurtham day.
+                </p>
+
+                <div className="border-t border-amber-500/20 pt-6 space-y-3 text-amber-200/90 text-sm font-light">
+                  <p className="flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <span>Traditional Hindu Wedding Rituals</span>
+                  </p>
+                  <p className="flex items-center gap-3">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <span>August 27, 2026 • Trincomalee</span>
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
          {/* VENUE & LOCATION SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-14">
@@ -363,6 +417,56 @@ export default function WeddingExperience() {
               </form>
             </motion.div>
           </section>
+
+                {/* DIGITAL WEBSITE CREATION PROMO SECTION */}
+          <section className="py-16 px-4 max-w-2xl mx-auto text-center">
+            <motion.div 
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="glass-card p-8 md:p-10 rounded-3xl gold-border shadow-2xl bg-gradient-to-b from-[#140f0a] via-[#070504] to-[#140f0a]"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-4">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                GET YOUR OWN WEBSITE
+              </div>
+
+              <h3 className="font-serif-custom text-2xl md:text-3xl gold-gradient-text mb-3">
+                Want a Website for Your Special Event?
+              </h3>
+
+              <p className="text-xs md:text-sm text-amber-100/70 font-light leading-relaxed max-w-md mx-auto mb-6">
+                We create modern, interactive digital invitation cards and custom event websites for weddings, birthdays, anniversaries, and special occasions.
+              </p>
+
+              {/* Contact & WhatsApp Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                {/* WhatsApp Support Button */}
+                <a
+                  href="https://wa.me/94770649966?text=Hi!%20I%20saw%20your%20wedding%20website%20and%20I%20would%20like%20to%20create%20one%20for%20my%20event."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wider transition-all shadow-lg cursor-pointer"
+                >
+                  {/* WhatsApp Icon SVG */}
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                  </svg>
+                  WhatsApp Support
+                </a>
+
+                {/* Direct Phone Call Button */}
+                <a
+                  href="tel:+94770649966"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-300 font-semibold text-xs tracking-wider hover:bg-amber-500/20 transition-all cursor-pointer"
+                >
+                  📞 Call Us: +94 77 064 9966
+                </a>
+              </div>
+            </motion.div>
+          </section>
+
 
           <footer className="py-8 text-center text-xs text-amber-200/40 border-t border-amber-500/10">
             <p>&copy; 2026 Gowthamarajah &amp; Jinojini. Crafted with love.</p>
