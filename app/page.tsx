@@ -222,7 +222,7 @@ export default function WeddingExperience() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-2 md:p-6"
+                className="fixedinset-0z-[999]bg-black/95backdrop-blur-mdoverflow-y-autop-3md:p-8flexjustify-centeritems-start"
               >
                 {/* Close Button */}
                 <button 
@@ -233,13 +233,35 @@ export default function WeddingExperience() {
                 </button>
 
                 {/* High Resolution Printable Invitation */}
-                <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl gold-border p-1 bg-black/80 flex items-center justify-center">
-                  <img 
-                    src="/images/invitation.png" 
-                    alt="Official Wedding Invitation Card" 
-                    className="w-full h-auto object-contain rounded-lg"
-                  />
-                </div>
+                <div
+  className="
+  relative
+  w-full
+  h-[92vh]
+  overflow-y-auto
+  rounded-xl
+  bg-black
+  flex
+  justify-center
+  items-start
+  p-2
+  md:p-5
+  "
+>
+
+    <img
+        src="/images/invitation.png"
+        alt="Wedding Invitation"
+        className="
+        w-full
+        max-w-4xl
+        h-auto
+        rounded-xl
+        shadow-2xl
+        "
+    />
+
+</div>
               </motion.div>
             )}
           </AnimatePresence>
