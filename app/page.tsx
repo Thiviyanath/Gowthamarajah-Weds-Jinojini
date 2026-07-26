@@ -164,19 +164,23 @@ export default function WeddingExperience() {
   </div>
 </section>
 
-          {/* Digital Invitation Card Section */}
-          <section className="py-16 px-4">
-            <div className="max-w-3xl mx-auto glass-card p-6 md:p-8 rounded-2xl gold-border text-center">
-              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-6">DIGITAL INVITATION CARD</p>
-              <div className="w-full rounded-lg overflow-hidden border border-amber-500/20">
-                <img 
-                  src="/images/invitation.png" 
-                  alt="Official Wedding Invitation Card" 
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+                  {/* Digital Invitation Card Section */}
+        <section className="py-12 md:py-20 px-4 w-full">
+          <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
+            <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
+              DIGITAL INVITATION CARD
+            </p>
+            
+            {/* Responsive Full-Width Wrapper */}
+            <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40">
+              <img 
+                src="/images/invitation.png" 
+                alt="Official Wedding Invitation Card" 
+                className="w-full h-auto max-w-full object-contain block"
+              />
             </div>
-          </section>
+          </div>
+        </section>
 
           {/* RSVP Section */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
