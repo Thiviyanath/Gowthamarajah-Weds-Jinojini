@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Scroll, ShieldCheck, ChevronDown } from 'lucide-react';
+import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Scroll, ShieldCheck, ChevronDown, Globe } from 'lucide-react';
 
 export default function WeddingExperience() {
   const [isOpened, setIsOpened] = useState(false);
@@ -138,7 +138,7 @@ export default function WeddingExperience() {
           </motion.button>
 
           {/* HERO SECTION */}
-          <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+          <section className="relative w-full min-h-screen py-16 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
               <img 
                 src="/images/hero.png" 
@@ -148,7 +148,7 @@ export default function WeddingExperience() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#070504] via-[#070504]/40 to-[#070504]/80" />
             </div>
 
-            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center justify-center pt-16">
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center justify-center">
               
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -182,7 +182,7 @@ export default function WeddingExperience() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 }}
-                className="grid grid-cols-4 gap-3 md:gap-6 w-full max-w-lg mx-auto glass-card p-5 rounded-2xl gold-border shadow-2xl"
+                className="grid grid-cols-4 gap-3 md:gap-6 w-full max-w-lg mx-auto glass-card p-5 rounded-2xl gold-border shadow-2xl mb-8"
               >
                 {Object.entries(timeLeft).map(([label, value]) => (
                   <div key={label} className="text-center">
@@ -192,13 +192,14 @@ export default function WeddingExperience() {
                 ))}
               </motion.div>
 
+              {/* Clean Scroll Down Indicator (Placed in flow below countdown box) */}
               <motion.div 
-                animate={{ y: [0, 8, 0] }} 
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute bottom-8 text-amber-400/60 flex flex-col items-center gap-1 text-[10px] tracking-widest uppercase"
+                animate={{ y: [0, 6, 0] }} 
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="flex flex-col items-center gap-1 text-amber-400/70 text-[10px] tracking-[0.3em] uppercase pt-2 cursor-pointer"
               >
                 <span>Scroll Down</span>
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className="w-4 h-4 text-amber-400" />
               </motion.div>
 
             </div>
@@ -238,7 +239,7 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-                {/* OUR JOURNEY / COUPLE PORTRAIT SECTION */}
+          {/* OUR JOURNEY / COUPLE PORTRAIT SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
@@ -292,7 +293,7 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-         {/* VENUE & LOCATION SECTION */}
+          {/* VENUE & LOCATION SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-14">
               <h2 className="font-cinzel text-2xl md:text-4xl gold-gradient-text mb-3">Venue &amp; Location</h2>
@@ -382,6 +383,7 @@ export default function WeddingExperience() {
 
             </div>
           </section>
+
           {/* RSVP FORM SECTION */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
             <motion.div 
@@ -418,7 +420,7 @@ export default function WeddingExperience() {
             </motion.div>
           </section>
 
-                {/* DIGITAL WEBSITE CREATION PROMO SECTION */}
+          {/* DIGITAL WEBSITE CREATION & PORTFOLIO SECTION */}
           <section className="py-16 px-4 max-w-2xl mx-auto text-center">
             <motion.div 
               whileInView={{ opacity: 1, y: 0 }}
@@ -433,40 +435,49 @@ export default function WeddingExperience() {
               </div>
 
               <h3 className="font-serif-custom text-2xl md:text-3xl gold-gradient-text mb-3">
-                Want a Website for Your Special Event?
+                Need a Custom Event Website?
               </h3>
 
               <p className="text-xs md:text-sm text-amber-100/70 font-light leading-relaxed max-w-md mx-auto mb-6">
-                We create modern, interactive digital invitation cards and custom event websites for weddings, birthdays, anniversaries, and special occasions.
+                Crafted by <span className="text-amber-300 font-semibold">Thiviyanath</span>. I build modern, interactive invitation cards and web experiences for weddings and special occasions.
               </p>
 
-              {/* Contact & WhatsApp Buttons */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              {/* Action Buttons: Portfolio, WhatsApp & Call */}
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
+                {/* Developer Portfolio Link */}
+                <a
+                  href="https://thiviyanath.github.io/thivi.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-black font-bold text-xs tracking-wider transition-all shadow-lg hover:scale-105 cursor-pointer"
+                >
+                  <Globe className="w-4 h-4 text-black" />
+                  VIEW PORTFOLIO
+                </a>
+
                 {/* WhatsApp Support Button */}
                 <a
                   href="https://wa.me/94770649966?text=Hi!%20I%20saw%20your%20wedding%20website%20and%20I%20would%20like%20to%20create%20one%20for%20my%20event."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wider transition-all shadow-lg cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wider transition-all shadow-lg hover:scale-105 cursor-pointer"
                 >
-                  {/* WhatsApp Icon SVG */}
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                   </svg>
-                  WhatsApp Support
+                  WHATSAPP US
                 </a>
 
                 {/* Direct Phone Call Button */}
                 <a
                   href="tel:+94770649966"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-300 font-semibold text-xs tracking-wider hover:bg-amber-500/20 transition-all cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-amber-500/10 border border-amber-500/40 text-amber-300 font-semibold text-xs tracking-wider hover:bg-amber-500/20 transition-all hover:scale-105 cursor-pointer"
                 >
-                  📞 Call Us: +94 77 064 9966
+                  📞 077 064 9966
                 </a>
               </div>
             </motion.div>
           </section>
-
 
           <footer className="py-8 text-center text-xs text-amber-200/40 border-t border-amber-500/10">
             <p>&copy; 2026 Gowthamarajah &amp; Jinojini. Crafted with love.</p>
