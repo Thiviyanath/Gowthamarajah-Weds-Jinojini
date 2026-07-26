@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Maximize2, X, Eye } from 'lucide-react';
 
 export default function WeddingExperience() {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showModalCard, setShowModalCard] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -36,7 +37,7 @@ export default function WeddingExperience() {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch((err) => console.log(err));
+        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
       }
     }
   };
@@ -45,25 +46,15 @@ export default function WeddingExperience() {
     setIsOpened(true);
     if (audioRef.current) {
       audioRef.current.volume = 0.7;
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch((err) => {
-        console.log("Audio autoplay prevented by browser:", err);
-      });
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
     }
   };
 
   return (
     <main className="relative min-h-screen bg-[#0a0806] text-amber-50 overflow-x-hidden">
       
-      {/* Hidden HTML5 Audio Element */}
-      <audio 
-        ref={audioRef} 
-        src="/bg-music.mp3" 
-        loop 
-        playsInline 
-        preload="auto" 
-      />
+      {/* Hidden Audio Element */}
+      <audio ref={audioRef} src="/bg-music.mp3" loop playsInline preload="auto" />
 
       {/* 1. CINEMATIC OPENING OVERLAY */}
       <AnimatePresence>
@@ -106,15 +97,14 @@ export default function WeddingExperience() {
         )}
       </AnimatePresence>
 
-      {/* 2. MAIN INTERACTIVE EXPERIENCE */}
+      {/* 2. MAIN EXPERIENCE */}
       {isOpened && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           
-          {/* Floating Audio Toggle Button */}
+          {/* Audio Button */}
           <button 
             onClick={toggleAudio}
             className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full glass-card border border-amber-500/30 text-amber-300 hover:text-white transition-colors cursor-pointer shadow-2xl"
-            title="Toggle Background Music"
           >
             {isPlaying ? <Volume2 className="w-5 h-5 text-amber-400" /> : <VolumeX className="w-5 h-5 text-amber-200/50" />}
           </button>
@@ -143,7 +133,6 @@ export default function WeddingExperience() {
                 Request the honour of your presence at their celestial union.
               </p>
 
-              {/* Countdown Grid */}
               <div className="grid grid-cols-4 gap-3 md:gap-6 w-full max-w-md mx-auto glass-card p-4 rounded-xl gold-border shadow-2xl">
                 {Object.entries(timeLeft).map(([label, value]) => (
                   <div key={label} className="text-center">
@@ -174,7 +163,7 @@ export default function WeddingExperience() {
               <div className="space-y-6 glass-card p-8 rounded-2xl gold-border">
                 <h3 className="font-serif-custom text-2xl text-amber-200">The Sacred Muhurtham</h3>
                 <p className="text-amber-100/70 text-sm leading-relaxed">
-                  Join us as we take our auspicious steps together under the divine grace of Pathirakali Amman and Sri Koneswaram Temple.
+                  Join us as we take our auspicious steps together under the divine grace of Sri Koneswaram Temple.
                 </p>
                 <div className="border-t border-amber-500/20 pt-6 space-y-3">
                   <div className="flex items-center gap-3 text-amber-300/90 text-sm">
@@ -194,23 +183,66 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* DIGITAL INVITATION CARD SECTION */}
+          {/* NEW INTERACTIVE INVITATION CARD DISPLAY */}
           <section className="py-12 md:py-20 px-4 w-full">
-            <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
-              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
-                DIGITAL INVITATION CARD
+            <div className="max-w-3xl mx-auto glass-card p-6 md:p-8 rounded-2xl gold-border text-center">
+              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-6">
+                OFFICIAL INVITATION
               </p>
-              
-              <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40 min-h-[300px]">
-                <img 
-                  src="/images/invitation.jpg" 
-                  alt="Official Wedding Invitation Card" 
-                  className="w-full h-auto max-w-full block object-contain"
-                  loading="eager"
-                />
+
+              {/* Card Preview Graphic Box */}
+              <div 
+                onClick={() => setShowModalCard(true)}
+                className="relative group cursor-pointer overflow-hidden rounded-xl border border-amber-500/30 bg-gradient-to-b from-amber-950/40 via-black to-amber-950/40 p-8 text-center transition-all duration-300 hover:border-amber-400"
+              >
+                <div className="my-6">
+                  <Eye className="w-10 h-10 text-amber-400 mx-auto mb-3 animate-pulse" />
+                  <h3 className="font-serif-custom text-2xl text-amber-100 mb-2">
+                    திருமண அழைப்பிதழ்
+                  </h3>
+                  <p className="text-xs text-amber-200/60 tracking-wider">
+                    TAP TO VIEW FULL DIGITAL INVITATION
+                  </p>
+                </div>
+
+                <button 
+                  className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs tracking-widest font-semibold hover:bg-amber-500 hover:text-black transition-all"
+                >
+                  <Maximize2 className="w-4 h-4" />
+                  EXPAND INVITATION CARD
+                </button>
               </div>
             </div>
           </section>
+
+          {/* FULL SCREEN LIGHTBOX MODAL (Zero Flickering, Smooth View) */}
+          <AnimatePresence>
+            {showModalCard && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-2 md:p-6"
+              >
+                {/* Close Button */}
+                <button 
+                  onClick={() => setShowModalCard(false)}
+                  className="absolute top-4 right-4 z-50 p-3 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 hover:text-white"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+
+                {/* High Resolution Printable Invitation */}
+                <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl gold-border p-1 bg-black/80 flex items-center justify-center">
+                  <img 
+                    src="/images/invitation.png" 
+                    alt="Official Wedding Invitation Card" 
+                    className="w-full h-auto object-contain rounded-lg"
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* RSVP Section */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
