@@ -193,77 +193,40 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-           {/* SACRED TAMIL INVITATION SECTION */}
-          <section className="py-20 px-4 w-full relative">
+          {/* SACRED TAMIL INVITATION SECTION */}
+          <section className="py-12 md:py-20 px-4 w-full relative">
             <div className="max-w-3xl mx-auto">
               
-              <div className="text-center mb-10">
-                <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-4">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center gap-2 px-5 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
                   <Scroll className="w-4 h-4 text-amber-400" />
                   SACRED INVITATION
                 </div>
               </div>
 
-              {/* Royal Golden Card Box */}
+              {/* Royal Gold Frame displaying invitation.jpg */}
               <motion.div 
                 whileInView={{ opacity: 1, y: 0 }}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="relative glass-card p-6 md:p-14 rounded-3xl gold-border shadow-2xl bg-gradient-to-b from-[#18120c] via-[#070504] to-[#18120c] text-center border-2 border-amber-500/30"
+                className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-2xl bg-gradient-to-b from-[#18120c] via-[#070504] to-[#18120c] border-2 border-amber-500/30"
               >
-                <p className="text-amber-400 text-xs tracking-widest mb-1 font-serif">உ</p>
-                <p className="text-amber-200/80 text-xs tracking-widest mb-6 font-serif">சிவமயம்</p>
-
-                <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text mb-4">
-                  திருமண அழைப்பிதழ்
-                </h2>
-
-                <p className="text-xs md:text-sm text-amber-200/70 italic mb-8 max-w-lg mx-auto leading-relaxed">
-                  &ldquo;அன்பும் அறனும் உடைத்தாயின் இல்வாழ்க்கை பண்பும் பயனும் அது&rdquo;
-                </p>
-
-                <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent mx-auto mb-8" />
-
-                <p className="text-xs text-amber-300/90 tracking-widest mb-6 uppercase">அன்புடையீர்!</p>
-
-                <p className="text-xs md:text-sm text-amber-100/80 leading-relaxed max-w-xl mx-auto mb-8 font-light">
-                  நிகழும் சர்வ மங்களகரமான குரோதன வருடம் ஆவணி மாதம் 10 ஆம் நாள் <br className="hidden md:block"/>
-                  <span className="text-amber-300 font-semibold">(27.08.2026)</span> வியாழக்கிழமை சுபமுகூர்த்த சுபவேளையில், 
-                  ஸ்ரீமன் நாராயணனின் திருவருளோடு நற்பேறுகளுடன் நடைபெறும் எங்கள் திருமண நன்னாளிற்குத் தங்களுடைய மேலான வருகையை விரும்புகின்றோம்.
-                </p>
-
-                {/* Monogram Card */}
-                <div className="my-8 max-w-xs md:max-w-sm mx-auto rounded-2xl overflow-hidden gold-border p-2 bg-black/50 shadow-2xl">
+                <div className="w-full rounded-2xl overflow-hidden border border-amber-500/20 bg-black/60 shadow-2xl flex items-center justify-center min-h-[300px]">
                   <img 
-                    src="/images/invitation.png" 
-                    alt="Monogram" 
-                    className="w-full h-auto object-cover rounded-xl"
+                    src="/images/invitation.jpg?v=10" 
+                    alt="Official Tamil Wedding Invitation Card" 
+                    className="w-full h-auto object-contain block mx-auto rounded-xl max-h-[85vh]"
+                    loading="eager"
+                    decoding="sync"
+                    style={{ WebkitTransform: 'translateZ(0)' }}
                   />
                 </div>
-
-                {/* Couple Names */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 py-6 border-y border-amber-500/20">
-                  <div className="p-2">
-                    <p className="text-xs text-amber-400/80 uppercase tracking-widest mb-1">மணமகன்</p>
-                    <h3 className="font-serif-custom text-3xl gold-gradient-text">கௌதமராஜா</h3>
-                  </div>
-                  <div className="p-2">
-                    <p className="text-xs text-amber-400/80 uppercase tracking-widest mb-1">மணமகள்</p>
-                    <h3 className="font-serif-custom text-3xl gold-gradient-text">ஜினோஜினி</h3>
-                  </div>
-                </div>
-
-                <div className="space-y-2 text-xs md:text-sm text-amber-200/80 font-light">
-                  <p className="font-semibold text-amber-300">இடம்: இந்து கலாசார மண்டபம், திருகோணமலை</p>
-                  <p>நேரம்: காலை 10.40 மணி முதல் 11.55 மணி வரை (சுபமுகூர்த்தம்)</p>
-                </div>
-
               </motion.div>
 
             </div>
           </section>
-          
+
           {/* OUR STORY / DETAILS SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-14">
