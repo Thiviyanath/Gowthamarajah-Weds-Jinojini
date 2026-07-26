@@ -236,7 +236,7 @@ export default function WeddingExperience() {
                 {/* Monogram Card */}
                 <div className="my-8 max-w-xs md:max-w-sm mx-auto rounded-2xl overflow-hidden gold-border p-2 bg-black/50 shadow-2xl">
                   <img 
-                    src="/images/card.png" 
+                    src="/images/invitation.png" 
                     alt="Monogram" 
                     className="w-full h-auto object-cover rounded-xl"
                   />
@@ -296,7 +296,7 @@ export default function WeddingExperience() {
               >
                 <h3 className="font-serif-custom text-3xl text-amber-200">The Sacred Muhurtham</h3>
                 <p className="text-amber-100/70 text-sm leading-relaxed">
-                  Join us as we take our auspicious steps together under the divine grace of Pathirakali Amman and Sri Koneswaram Temple.
+                  Join us as we take our auspicious steps together under the divine grace of Sri Koneswaram Temple.
                 </p>
 
                 <div className="border-t border-amber-500/20 pt-6 space-y-4">
