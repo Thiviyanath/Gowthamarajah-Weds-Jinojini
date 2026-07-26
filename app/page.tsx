@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles } from 'lucide-react';
 
@@ -8,6 +8,7 @@ export default function WeddingExperience() {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Countdown timer for 27.08.2026
   useEffect(() => {
@@ -28,9 +29,31 @@ export default function WeddingExperience() {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle music play/pause toggle
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      }
+    }
+  };
+
+  const handleEnterExperience = () => {
+    setIsOpened(true);
+    if (audioRef.current) {
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  };
+
   return (
-    <main className="relative min-h-screen bg-[#0a0806] text-amber-50">
+    <main className="relative min-h-screen bg-[#0a0806] text-amber-50 overflow-x-hidden">
       
+      {/* Hidden HTML5 Audio Element */}
+      <audio ref={audioRef} src="/bg-music.mp3" loop preload="auto" />
+
       {/* 1. CINEMATIC OPENING OVERLAY */}
       <AnimatePresence>
         {!isOpened && (
@@ -61,7 +84,7 @@ export default function WeddingExperience() {
               <p className="text-xs text-amber-200/60 mb-8 tracking-widest uppercase">August 27, 2026 • Trincomalee</p>
 
               <button
-                onClick={() => { setIsOpened(true); setIsPlaying(true); }}
+                onClick={handleEnterExperience}
                 className="relative inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-black font-semibold text-sm tracking-widest transition-all duration-300 hover:scale-105 shadow-lg cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-black" />
@@ -76,111 +99,107 @@ export default function WeddingExperience() {
       {isOpened && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           
-          {/* Audio Toggle Floating Button */}
+          {/* Music Controller Button */}
           <button 
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full glass-card border border-amber-500/30 text-amber-300 hover:text-white transition-colors cursor-pointer"
-            title="Toggle Music"
+            onClick={toggleAudio}
+            className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full glass-card border border-amber-500/30 text-amber-300 hover:text-white transition-colors cursor-pointer shadow-2xl"
+            title="Toggle Background Music"
           >
             {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
           </button>
 
-         {/* Hero Banner Section with Exact Framing */}
-<section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-  {/* Background Image Layer */}
-  <div className="absolute inset-0 z-0">
-    <img 
-      src="/images/hero.png" 
-      alt="Gowthamarajah &amp; Jinojini Hero" 
-      className="w-full h-full object-cover object-[center_25%] opacity-60"
-    />
-    {/* Dark Gradient Vignette Overlay for Crisp Text Readability */}
-    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0806] via-[#0a0806]/30 to-[#0a0806]/70" />
-  </div>
+          {/* Hero Banner Section */}
+          <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 z-0">
+              <img 
+                src="/images/hero.png" 
+                alt="Gowthamarajah &amp; Jinojini Hero" 
+                className="w-full h-full object-cover object-[center_25%] opacity-60"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0806] via-[#0a0806]/30 to-[#0a0806]/70" />
+            </div>
 
-  {/* Overlay Content */}
-  <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center justify-center pt-12">
-    <p className="font-cinzel tracking-[0.4em] text-xs md:text-sm text-amber-300/90 mb-3 uppercase">
-      Together with their families
-    </p>
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center flex flex-col items-center justify-center pt-12">
+              <p className="font-cinzel tracking-[0.4em] text-xs md:text-sm text-amber-300/90 mb-3 uppercase">
+                Together with their families
+              </p>
 
-    <h1 className="font-serif-custom text-4xl md:text-7xl gold-gradient-text mb-4 drop-shadow-lg">
-      Gowthamarajah &amp; Jinojini
-    </h1>
+              <h1 className="font-serif-custom text-4xl md:text-7xl gold-gradient-text mb-4 drop-shadow-lg">
+                Gowthamarajah &amp; Jinojini
+              </h1>
 
-    <p className="text-xs md:text-sm text-amber-100/80 font-light max-w-md mx-auto mb-8 tracking-wide">
-      Request the honour of your presence at their celestial union.
-    </p>
+              <p className="text-xs md:text-sm text-amber-100/80 font-light max-w-md mx-auto mb-8 tracking-wide">
+                Request the honour of your presence at their celestial union.
+              </p>
 
-    {/* Glassmorphic Countdown Box */}
-    <div className="grid grid-cols-4 gap-3 md:gap-6 w-full max-w-md mx-auto glass-card p-4 rounded-xl gold-border shadow-2xl">
-      {Object.entries(timeLeft).map(([label, value]) => (
-        <div key={label} className="text-center">
-          <span className="font-cinzel text-xl md:text-3xl text-amber-200 font-semibold">{value}</span>
-          <p className="text-[9px] md:text-xs text-amber-400/70 uppercase tracking-widest mt-1">{label}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+              {/* Countdown Grid */}
+              <div className="grid grid-cols-4 gap-3 md:gap-6 w-full max-w-md mx-auto glass-card p-4 rounded-xl gold-border shadow-2xl">
+                {Object.entries(timeLeft).map(([label, value]) => (
+                  <div key={label} className="text-center">
+                    <span className="font-cinzel text-xl md:text-3xl text-amber-200 font-semibold">{value}</span>
+                    <p className="text-[9px] md:text-xs text-amber-400/70 uppercase tracking-widest mt-1">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-         {/* Story Section */}
-<section className="py-20 px-4 max-w-5xl mx-auto">
-  <div className="text-center mb-12">
-    <h2 className="font-cinzel text-2xl md:text-4xl gold-gradient-text mb-2">Our Wedding Story</h2>
-    <div className="w-16 h-0.5 bg-amber-500/40 mx-auto" />
-  </div>
+          {/* Our Story Section */}
+          <section className="py-20 px-4 max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="font-cinzel text-2xl md:text-4xl gold-gradient-text mb-2">Our Wedding Story</h2>
+              <div className="w-16 h-0.5 bg-amber-500/40 mx-auto" />
+            </div>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    {/* Full Vertical Poster Container */}
-    <div className="rounded-2xl overflow-hidden gold-border shadow-2xl bg-black/40 p-2 flex items-center justify-center">
-      <img 
-        src="/images/story.png" 
-        alt="Story Portrait" 
-        className="w-full h-auto max-h-[650px] object-contain rounded-xl"
-      />
-    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="rounded-2xl overflow-hidden gold-border shadow-2xl bg-black/40 p-2 flex items-center justify-center">
+                <img 
+                  src="/images/story.png" 
+                  alt="Story Portrait" 
+                  className="w-full h-auto max-h-[650px] object-contain rounded-xl"
+                />
+              </div>
 
-    <div className="space-y-6 glass-card p-8 rounded-2xl gold-border">
-      <h3 className="font-serif-custom text-2xl text-amber-200">The Sacred Muhurtham</h3>
-      <p className="text-amber-100/70 text-sm leading-relaxed">
-        Join us as we take our auspicious steps together under the divine grace of Pathirakali Amman and Sri Koneswaram Temple.
-      </p>
-      <div className="border-t border-amber-500/20 pt-6 space-y-3">
-        <div className="flex items-center gap-3 text-amber-300/90 text-sm">
-          <Calendar className="w-4 h-4 text-amber-400" />
-          <span>Thursday, 27th August 2026</span>
-        </div>
-        <div className="flex items-center gap-3 text-amber-300/90 text-sm">
-          <Clock className="w-4 h-4 text-amber-400" />
-          <span>10:40 AM - 11:55 AM (Subha Muhurtham)</span>
-        </div>
-        <div className="flex items-center gap-3 text-amber-300/90 text-sm">
-          <MapPin className="w-4 h-4 text-amber-400" />
-          <span>Hindu Cultural Hall, Trincomalee</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+              <div className="space-y-6 glass-card p-8 rounded-2xl gold-border">
+                <h3 className="font-serif-custom text-2xl text-amber-200">The Sacred Muhurtham</h3>
+                <p className="text-amber-100/70 text-sm leading-relaxed">
+                  Join us as we take our auspicious steps together under the divine grace of Pathirakali Amman and Sri Koneswaram Temple.
+                </p>
+                <div className="border-t border-amber-500/20 pt-6 space-y-3">
+                  <div className="flex items-center gap-3 text-amber-300/90 text-sm">
+                    <Calendar className="w-4 h-4 text-amber-400" />
+                    <span>Thursday, 27th August 2026</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-amber-300/90 text-sm">
+                    <Clock className="w-4 h-4 text-amber-400" />
+                    <span>10:40 AM - 11:55 AM (Subha Muhurtham)</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-amber-300/90 text-sm">
+                    <MapPin className="w-4 h-4 text-amber-400" />
+                    <span>Hindu Cultural Hall, Trincomalee</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                  {/* Digital Invitation Card Section */}
-      <section className="py-12 md:py-20 px-4 w-full">
-        <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
-          <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
-            DIGITAL INVITATION CARD
-          </p>
-          
-          {/* Responsive Full-Width Wrapper */}
-          <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40">
-            <img 
-              src="/images/invitation.png" 
-              alt="Official Wedding Invitation Card" 
-              className="w-full h-auto max-w-full object-contain block"
-            />
-          </div>
-        </div>
-      </section>
+          {/* DIGITAL INVITATION CARD SECTION (FIXED FOR MOBILE DISPLAY) */}
+          <section className="py-12 md:py-20 px-4 w-full">
+            <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
+              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
+                DIGITAL INVITATION CARD
+              </p>
+              
+              <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40">
+                <img 
+                  src="/images/invitation.png" 
+                  alt="Official Wedding Invitation Card" 
+                  className="w-full h-auto max-w-full block"
+                  style={{ display: 'block', height: 'auto', maxWidth: '100%' }}
+                />
+              </div>
+            </div>
+          </section>
 
           {/* RSVP Section */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
