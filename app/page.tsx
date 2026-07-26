@@ -154,36 +154,35 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* HIGHLIGHTED INVITATION SECTION (ROYAL FEATURED CARD) */}
-          <section className="py-16 md:py-24 px-4 w-full relative">
-            <div className="max-w-4xl mx-auto">
-              
-              {/* Glowing Section Header */}
-              <div className="text-center mb-10">
-                <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
-                  <Scroll className="w-4 h-4 text-amber-400" />
-                  SACRED INVITATION
-                </div>
-                <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
-                  திருமண அழைப்பிதழ்
-                </h2>
-              </div>
+        {/* HIGHLIGHTED INVITATION SECTION */}
+<section className="py-16 md:py-24 px-4 w-full relative">
+  <div className="max-w-4xl mx-auto">
+    
+    {/* Section Header */}
+    <div className="text-center mb-10">
+      <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+        <Scroll className="w-4 h-4 text-amber-400" />
+        SACRED INVITATION
+      </div>
+      <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
+        திருமண அழைப்பிதழ்
+      </h2>
+    </div>
 
-              {/* Highlighted Showcase Box */}
-              <div className="relative glass-card p-3 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
-                <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-black/60 shadow-2xl">
-                  <img 
-                    src={imgSrc} 
-                    alt="Official Tamil Wedding Invitation Card" 
-                    onError={handleImageError}
-                    className="w-full h-auto object-contain block mx-auto"
-                    style={{ minHeight: '300px', display: 'block' }}
-                  />
-                </div>
-              </div>
+    {/* Featured Card Wrapper */}
+    <div className="relative glass-card p-3 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
+      <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-black/60 shadow-2xl">
+        <img 
+          src="/images/invitation.png" 
+          alt="Official Tamil Wedding Invitation Card" 
+          className="w-full h-auto object-contain block mx-auto"
+          style={{ display: 'block', width: '100%' }}
+        />
+      </div>
+    </div>
 
-            </div>
-          </section>
+  </div>
+</section>
 
           {/* Our Story Section */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
