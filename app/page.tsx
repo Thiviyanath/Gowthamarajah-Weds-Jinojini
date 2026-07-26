@@ -29,14 +29,14 @@ export default function WeddingExperience() {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle music play/pause toggle
+  // Audio Handler
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+        audioRef.current.play().then(() => setIsPlaying(true)).catch((err) => console.log(err));
       }
     }
   };
@@ -44,7 +44,12 @@ export default function WeddingExperience() {
   const handleEnterExperience = () => {
     setIsOpened(true);
     if (audioRef.current) {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      audioRef.current.volume = 0.7;
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch((err) => {
+        console.log("Audio autoplay prevented by browser:", err);
+      });
     }
   };
 
@@ -52,7 +57,13 @@ export default function WeddingExperience() {
     <main className="relative min-h-screen bg-[#0a0806] text-amber-50 overflow-x-hidden">
       
       {/* Hidden HTML5 Audio Element */}
-      <audio ref={audioRef} src="/bg-music.mp3" loop preload="auto" />
+      <audio 
+        ref={audioRef} 
+        src="/bg-music.mp3" 
+        loop 
+        playsInline 
+        preload="auto" 
+      />
 
       {/* 1. CINEMATIC OPENING OVERLAY */}
       <AnimatePresence>
@@ -99,13 +110,13 @@ export default function WeddingExperience() {
       {isOpened && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           
-          {/* Music Controller Button */}
+          {/* Floating Audio Toggle Button */}
           <button 
             onClick={toggleAudio}
             className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full glass-card border border-amber-500/30 text-amber-300 hover:text-white transition-colors cursor-pointer shadow-2xl"
             title="Toggle Background Music"
           >
-            {isPlaying ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+            {isPlaying ? <Volume2 className="w-5 h-5 text-amber-400" /> : <VolumeX className="w-5 h-5 text-amber-200/50" />}
           </button>
 
           {/* Hero Banner Section */}
@@ -183,19 +194,22 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* DIGITAL INVITATION CARD SECTION (FIXED FOR MOBILE DISPLAY) */}
+          {/* DIGITAL INVITATION CARD SECTION */}
           <section className="py-12 md:py-20 px-4 w-full">
             <div className="max-w-3xl mx-auto glass-card p-4 md:p-8 rounded-2xl gold-border text-center">
               <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-4 md:mb-6">
                 DIGITAL INVITATION CARD
               </p>
               
-              <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40">
+              <div className="w-full flex justify-center items-center rounded-lg overflow-hidden border border-amber-500/20 bg-black/40 min-h-[300px]">
                 <img 
                   src="/images/invitation.png" 
                   alt="Official Wedding Invitation Card" 
-                  className="w-full h-auto max-w-full block"
-                  style={{ display: 'block', height: 'auto', maxWidth: '100%' }}
+                  className="w-full h-auto max-w-full block object-contain"
+                  onError={(e) => {
+                    // Fallback if png isn't found
+                    (e.target as HTMLImageElement).src = '/images/invitation.jpg';
+                  }}
                 />
               </div>
             </div>
