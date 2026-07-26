@@ -193,7 +193,7 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-          {/* SACRED TAMIL INVITATION SECTION */}
+           {/* SACRED TAMIL INVITATION SECTION */}
           <section className="py-20 px-4 w-full relative">
             <div className="max-w-3xl mx-auto">
               
@@ -263,7 +263,7 @@ export default function WeddingExperience() {
 
             </div>
           </section>
-
+          
           {/* OUR STORY / DETAILS SECTION */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-14">
