@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Maximize2, X, Eye } from 'lucide-react';
+import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Scroll } from 'lucide-react';
 
 export default function WeddingExperience() {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showModalCard, setShowModalCard] = useState(false);
+  const [imgSrc, setImgSrc] = useState('/images/invitation.png');
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -30,7 +30,17 @@ export default function WeddingExperience() {
     return () => clearInterval(interval);
   }, []);
 
-  // Audio Handler
+  // Safe Image Fallback system to prevent infinite flicker loops
+  const handleImageError = () => {
+    if (imgSrc.endsWith('.png')) {
+      setImgSrc('/images/invitation.jpg');
+    } else if (imgSrc.endsWith('.jpg')) {
+      setImgSrc('/images/invitation.jpeg');
+    } else if (imgSrc.endsWith('.jpeg')) {
+      setImgSrc('/images/card.png'); // Fallback to card image if missing
+    }
+  };
+
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -53,7 +63,7 @@ export default function WeddingExperience() {
   return (
     <main className="relative min-h-screen bg-[#0a0806] text-amber-50 overflow-x-hidden">
       
-      {/* Hidden Audio Element */}
+      {/* Background Audio */}
       <audio ref={audioRef} src="/bg-music.mp3" loop playsInline preload="auto" />
 
       {/* 1. CINEMATIC OPENING OVERLAY */}
@@ -109,7 +119,7 @@ export default function WeddingExperience() {
             {isPlaying ? <Volume2 className="w-5 h-5 text-amber-400" /> : <VolumeX className="w-5 h-5 text-amber-200/50" />}
           </button>
 
-          {/* Hero Banner Section */}
+          {/* Hero Section */}
           <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
               <img 
@@ -144,6 +154,37 @@ export default function WeddingExperience() {
             </div>
           </section>
 
+          {/* HIGHLIGHTED INVITATION SECTION (ROYAL FEATURED CARD) */}
+          <section className="py-16 md:py-24 px-4 w-full relative">
+            <div className="max-w-4xl mx-auto">
+              
+              {/* Glowing Section Header */}
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+                  <Scroll className="w-4 h-4 text-amber-400" />
+                  SACRED INVITATION
+                </div>
+                <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
+                  திருமண அழைப்பிதழ்
+                </h2>
+              </div>
+
+              {/* Highlighted Showcase Box */}
+              <div className="relative glass-card p-3 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
+                <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-black/60 shadow-2xl">
+                  <img 
+                    src={imgSrc} 
+                    alt="Official Tamil Wedding Invitation Card" 
+                    onError={handleImageError}
+                    className="w-full h-auto object-contain block mx-auto"
+                    style={{ minHeight: '300px', display: 'block' }}
+                  />
+                </div>
+              </div>
+
+            </div>
+          </section>
+
           {/* Our Story Section */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
             <div className="text-center mb-12">
@@ -163,7 +204,7 @@ export default function WeddingExperience() {
               <div className="space-y-6 glass-card p-8 rounded-2xl gold-border">
                 <h3 className="font-serif-custom text-2xl text-amber-200">The Sacred Muhurtham</h3>
                 <p className="text-amber-100/70 text-sm leading-relaxed">
-                  Join us as we take our auspicious steps together under the divine grace of Sri Koneswaram Temple.
+                  Join us as we take our auspicious steps together under the divine grace of Pathirakali Amman and Sri Koneswaram Temple.
                 </p>
                 <div className="border-t border-amber-500/20 pt-6 space-y-3">
                   <div className="flex items-center gap-3 text-amber-300/90 text-sm">
@@ -182,89 +223,6 @@ export default function WeddingExperience() {
               </div>
             </div>
           </section>
-
-          {/* NEW INTERACTIVE INVITATION CARD DISPLAY */}
-          <section className="py-12 md:py-20 px-4 w-full">
-            <div className="max-w-3xl mx-auto glass-card p-6 md:p-8 rounded-2xl gold-border text-center">
-              <p className="font-cinzel text-xs text-amber-400/80 tracking-widest mb-6">
-                OFFICIAL INVITATION
-              </p>
-
-              {/* Card Preview Graphic Box */}
-              <div 
-                onClick={() => setShowModalCard(true)}
-                className="relative group cursor-pointer overflow-hidden rounded-xl border border-amber-500/30 bg-gradient-to-b from-amber-950/40 via-black to-amber-950/40 p-8 text-center transition-all duration-300 hover:border-amber-400"
-              >
-                <div className="my-6">
-                  <Eye className="w-10 h-10 text-amber-400 mx-auto mb-3 animate-pulse" />
-                  <h3 className="font-serif-custom text-2xl text-amber-100 mb-2">
-                    திருமண அழைப்பிதழ்
-                  </h3>
-                  <p className="text-xs text-amber-200/60 tracking-wider">
-                    TAP TO VIEW FULL DIGITAL INVITATION
-                  </p>
-                </div>
-
-                <button 
-                  className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs tracking-widest font-semibold hover:bg-amber-500 hover:text-black transition-all"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                  EXPAND INVITATION CARD
-                </button>
-              </div>
-            </div>
-          </section>
-
-          {/* FULL SCREEN LIGHTBOX MODAL (Zero Flickering, Smooth View) */}
-          <AnimatePresence>
-            {showModalCard && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixedinset-0z-[999]bg-black/95backdrop-blur-mdoverflow-y-autop-3md:p-8flexjustify-centeritems-start"
-              >
-                {/* Close Button */}
-                <button 
-                  onClick={() => setShowModalCard(false)}
-                  className="absolute top-4 right-4 z-50 p-3 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 hover:text-white"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-
-                {/* High Resolution Printable Invitation */}
-                <div
-  className="
-  relative
-  w-full
-  h-[92vh]
-  overflow-y-auto
-  rounded-xl
-  bg-black
-  flex
-  justify-center
-  items-start
-  p-2
-  md:p-5
-  "
->
-
-    <img
-        src="/images/invitation.png"
-        alt="Wedding Invitation"
-        className="
-        w-full
-        max-w-4xl
-        h-auto
-        rounded-xl
-        shadow-2xl
-        "
-    />
-
-</div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* RSVP Section */}
           <section className="py-20 px-4 max-w-xl mx-auto text-center">
