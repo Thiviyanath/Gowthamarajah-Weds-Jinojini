@@ -7,7 +7,6 @@ import { Calendar, MapPin, Clock, Heart, Volume2, VolumeX, Sparkles, Scroll } fr
 export default function WeddingExperience() {
   const [isOpened, setIsOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [imgSrc, setImgSrc] = useState('/images/invitation.png');
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -30,17 +29,6 @@ export default function WeddingExperience() {
     return () => clearInterval(interval);
   }, []);
 
-  // Safe Image Fallback system to prevent infinite flicker loops
-  const handleImageError = () => {
-    if (imgSrc.endsWith('.png')) {
-      setImgSrc('/images/invitation.jpg');
-    } else if (imgSrc.endsWith('.jpg')) {
-      setImgSrc('/images/invitation.jpeg');
-    } else if (imgSrc.endsWith('.jpeg')) {
-      setImgSrc('/images/card.png'); // Fallback to card image if missing
-    }
-  };
-
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -62,6 +50,9 @@ export default function WeddingExperience() {
 
   return (
     <main className="relative min-h-screen bg-[#0a0806] text-amber-50 overflow-x-hidden">
+      
+      {/* Preload Mobile Image in Browser Memory */}
+      <link rel="preload" href="/images/invitation.png" as="image" />
       
       {/* Background Audio */}
       <audio ref={audioRef} src="/bg-music.mp3" loop playsInline preload="auto" />
@@ -111,7 +102,7 @@ export default function WeddingExperience() {
       {isOpened && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           
-          {/* Audio Button */}
+          {/* Audio Controller Floating Button */}
           <button 
             onClick={toggleAudio}
             className="fixed bottom-6 right-6 z-40 p-3.5 rounded-full glass-card border border-amber-500/30 text-amber-300 hover:text-white transition-colors cursor-pointer shadow-2xl"
@@ -154,35 +145,38 @@ export default function WeddingExperience() {
             </div>
           </section>
 
-        {/* HIGHLIGHTED INVITATION SECTION */}
-<section className="py-16 md:py-24 px-4 w-full relative">
-  <div className="max-w-4xl mx-auto">
-    
-    {/* Section Header */}
-    <div className="text-center mb-10">
-      <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
-        <Scroll className="w-4 h-4 text-amber-400" />
-        SACRED INVITATION
-      </div>
-      <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
-        திருமண அழைப்பிதழ்
-      </h2>
-    </div>
+          {/* SACRED TAMIL INVITATION CARD (MOBILE FLICKER-FREE CSS RENDERING) */}
+          <section className="py-16 md:py-24 px-4 w-full relative">
+            <div className="max-w-4xl mx-auto">
+              
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-cinzel tracking-widest mb-3">
+                  <Scroll className="w-4 h-4 text-amber-400" />
+                  SACRED INVITATION
+                </div>
+                <h2 className="font-serif-custom text-3xl md:text-5xl gold-gradient-text">
+                  திருமண அழைப்பிதழ்
+                </h2>
+              </div>
 
-    {/* Featured Card Wrapper */}
-    <div className="relative glass-card p-3 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
-      <div className="w-full rounded-2xl overflow-hidden border border-amber-500/30 bg-black/60 shadow-2xl">
-        <img 
-          src="/images/invitation.png" 
-          alt="Official Tamil Wedding Invitation Card" 
-          className="w-full h-auto object-contain block mx-auto"
-          style={{ display: 'block', width: '100%' }}
-        />
-      </div>
-    </div>
+              {/* Hardware-Accelerated Container */}
+              <div className="relative glass-card p-2 md:p-6 rounded-3xl gold-border shadow-[0_0_50px_rgba(212,175,55,0.15)] bg-gradient-to-b from-amber-950/20 via-[#0a0806] to-amber-950/20">
+                
+                {/* CSS Native Background Image Box */}
+                <div 
+                  className="w-full rounded-2xl border border-amber-500/30 bg-center bg-contain bg-no-repeat shadow-2xl transition-all"
+                  style={{ 
+                    backgroundImage: `url('/images/invitation.png')`,
+                    aspectRatio: '1 / 1.41', // Standard A4 portrait aspect ratio for invitation cards
+                    width: '100%',
+                    backgroundColor: '#ffffff'
+                  }}
+                />
 
-  </div>
-</section>
+              </div>
+
+            </div>
+          </section>
 
           {/* Our Story Section */}
           <section className="py-20 px-4 max-w-5xl mx-auto">
